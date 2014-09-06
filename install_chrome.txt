@@ -1,0 +1,44 @@
+今天刚装完ubuntu 12.04，想安装Chrome浏览器，在《Ubuntu 软件中心》没有找到，只有Chromium，于是就先Googling了一下，有人说先在：“直接去官网下的安装不了，得要先在《Ubuntu 软件中心》安装Chromium之后，再安装Chrome，最后再删除Chromium”，这样也应该可行，再确实是有些麻烦。
+
+不过自己还是想去试着安装下chrome官方的下载版本，下载完，安装：
+代码:
+sudo dpkg -i google-chrome-stable_current_i386.deb
+
+
+确实是出现了错误：
+代码:
+正在解压缩 google-chrome-stable (从 google-chrome-stable_current_i386.deb) ...
+dpkg：依赖关系问题使得 google-chrome-stable 的配置工作不能继续：
+google-chrome-stable 依赖于 libxss1；然而：
+未安装软件包 libxss1。
+google-chrome-stable 依赖于 libcurl3；然而：
+未安装软件包 libcurl3。
+dpkg：处理 google-chrome-stable (--install)时出错：
+依赖关系问题 - 仍未被配置
+正在处理用于 gnome-menus 的触发器...
+正在处理用于 desktop-file-utils 的触发器...
+正在处理用于 bamfdaemon 的触发器...
+Rebuilding /usr/share/applications/bamf.index...
+正在处理用于 man-db 的触发器...
+在处理时有错误发生：
+google-chrome-stable
+
+
+细看是因为缺少libxss1、libcurl3库，这些库在那些包里呢？我不知道！如果手动查找安装这些库貌似相当麻烦。
+但后来无意中发现了这个自动解决信赖库的命令：
+代码:
+sudo apt-get -f install
+
+
+OK! 安装成功。
+
+总结如下：
+先去官网http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI下载：google-chrome-stable_current_i386.deb
+再使用命令安装：
+代码:
+sudo dpkg -i google-chrome-stable_current_i386.deb
+
+
+再用命令修复库的依赖：
+代码:
+sudo apt-get -f install
