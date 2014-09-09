@@ -1,5 +1,12 @@
 今天刚装完ubuntu 12.04，想安装Chrome浏览器，在《Ubuntu 软件中心》没有找到，只有Chromium，于是就先Googling了一下，有人说先在：“直接去官网下的安装不了，得要先在《Ubuntu 软件中心》安装Chromium之后，再安装Chrome，最后再删除Chromium”，这样也应该可行，再确实是有些麻烦。
 
+32位版
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
+
+64位版
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+
 不过自己还是想去试着安装下chrome官方的下载版本，下载完，安装：
 代码:
 sudo dpkg -i google-chrome-stable_current_i386.deb
